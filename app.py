@@ -14,7 +14,7 @@ def load_assets():
 
 model, vectorizer, metrics = load_assets()
 
-st.title("Clickbait Intensity Analyzer")
+st.title("MediaLens: Headline Manipulation Analyzer")
 
 # 4-Tab Navigation
 tab1, tab2, tab3, tab4 = st.tabs(["Single Analyzer", "Batch Upload", "System Architecture", "Model Performance"])
@@ -33,32 +33,40 @@ with tab1:
             intensity_score = (ml_prob * 0.7) + (ling_score * 0.3)
             intensity_100 = round(intensity_score * 100)
 
-            st.markdown(f"### FINAL INTENSITY: {intensity_100} / 100")
+            st.markdown(f"### MANIPULATION INTENSITY: {intensity_100} / 100")
             
             st.write("#### Scoring Breakdown")
             st.progress(ml_prob, text=f"ML Prediction Confidence: {round(ml_prob * 100)} / 100")
             st.progress(ling_score, text=f"Linguistic Rules Score: {round(ling_score * 100)} / 100")
+            
+            st.caption("Formula: ML provides 70% weight, Linguistic Rules provide 30%")
             st.markdown("---")
-            st.write("#### Why?")
-            for rule, reason in triggers.items():
-                if rule == 'Neutral Language':
-                    st.write(f"🟢 **{rule}:** {reason}")
-                else:
-                    st.write(f"🔴 **{rule}:** {reason}")
-            st.write(f"🟢 **ML Model:** {round(ml_prob*100)}% confident based on vocabulary patterns.")
 
-# TAB 2: Batch Processing (Feature 9)
+            with st.expander("🔍 View Explainable AI (XAI) Breakdown", expanded=True):
+                for rule, reason in triggers.items():
+                    if rule == 'Neutral Language':
+                        st.markdown(f"🟢 **{rule}:** {reason}")
+                    else:
+                        st.markdown(f"🔴 **{rule}:** {reason}")
+                
+                st.markdown(f"🟢 **ML Model:** {round(ml_prob*100)}% confident based on historical vocabulary patterns.")
+
+# TAB 2: Batch Processing (Now with Excel & CSV)
 with tab2:
-    st.header("Batch CSV Analysis")
-    st.write("Upload a CSV file containing a column named `headline`.")
+    st.header("Batch CSV/Excel Manipulation Analysis")
+    st.write("Upload a file (`.csv`, `.xlsx`, `.xls`) containing a column named `headline`.")
     
-    uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
+    uploaded_file = st.file_uploader("Upload File", type=["csv", "xlsx", "xls"])
     
     if uploaded_file is not None:
         try:
-            batch_df = pd.read_csv(uploaded_file)
+            if uploaded_file.name.endswith('.csv'):
+                batch_df = pd.read_csv(uploaded_file)
+            else:
+                batch_df = pd.read_excel(uploaded_file)
+                
             if 'headline' not in batch_df.columns:
-                st.error("Error: CSV must contain a column named 'headline'.")
+                st.error("Error: File must contain a column named 'headline'.")
             else:
                 results = []
                 with st.spinner("Processing headlines..."):
@@ -78,24 +86,23 @@ with tab2:
                         elif score <= 80: cat = "High"
                         else: cat = "Very High"
                         
-                        results.append({"Headline": text, "Score": score, "Category": cat})
+                        results.append({"Headline": text, "Manipulation Intensity": score, "Intensity Category": cat})
                 
                 results_df = pd.DataFrame(results)
                 st.success(f"Successfully analyzed {len(results_df)} headlines.")
                 st.dataframe(results_df, use_container_width=True)
                 
-                # Allow download of results
                 csv_export = results_df.to_csv(index=False).encode('utf-8')
                 st.download_button(
                     label="Download Analyzed Data",
                     data=csv_export,
-                    file_name='clickbait_batch_results.csv',
+                    file_name='medialens_batch_results.csv',
                     mime='text/csv',
                 )
         except Exception as e:
-            st.error(f"Failed to read CSV. Error: {str(e)}")
+            st.error(f"Failed to read file. Error: {str(e)}")
 
-# TAB 3: NLP Pipeline Architecture (Feature 7)
+# TAB 3: NLP Pipeline Architecture
 with tab3:
     st.header("System Architecture")
     st.markdown("""
@@ -112,11 +119,10 @@ with tab3:
     * Computes weighted average and maps explanation triggers for Explainable AI (XAI) output.
     """)
 
-# TAB 4: Model Performance (Feature 6 & 5)
+# TAB 4: Model Performance
 with tab4:
     st.header("Dataset & Model Evaluation")
     
-    # Feature 6: Model Comparison
     st.subheader("Algorithm Comparison")
     comp_df = pd.DataFrame.from_dict(metrics["model_comparison"], orient="index")
     st.dataframe(comp_df.style.highlight_max(axis=0))
@@ -132,9 +138,9 @@ with tab4:
     cm = metrics["confusion_matrix"]
     st.code(f"""
                 Predicted
-              Non     Clickbait
-Actual Non    {cm[0][0]}        {cm[0][1]}
-Actual Click  {cm[1][0]}        {cm[1][1]}
+              Neutral    Manipulative
+Actual Neut   {cm[0][0]}        {cm[0][1]}
+Actual Manip  {cm[1][0]}        {cm[1][1]}
     """)
     
     st.subheader("Classification Report")
