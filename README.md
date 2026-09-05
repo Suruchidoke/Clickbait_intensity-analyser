@@ -601,4 +601,4 @@ Linguistic Rules ─────────┤
 
 **MediaLens — Headline Manipulation Analyzer**
 
-Developed as a final-year Artificial Intelligence & Data Science project.
+Developed by Suruchi Doke
