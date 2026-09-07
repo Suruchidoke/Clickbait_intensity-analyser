@@ -1,123 +1,159 @@
-# MediaLens: Headline Manipulation Analyzer
+MediaLens: Headline Manipulation Analyzer
 
-> **An Explainable Hybrid NLP System for Detecting and Understanding Headline Manipulation**
+An Explainable Hybrid NLP System for Detecting and Understanding Headline Manipulation
 
 Everyday digital-news consumers are exposed to hundreds of headlines across news websites, search engines, and social media feeds. Many headlines use engagement-oriented techniques such as sensational language, curiosity gaps, urgency, and excessive formatting to capture attention.
 
-**MediaLens** is a hybrid Natural Language Processing (NLP) system that detects, measures, and explains the **manipulative intensity** of news and media headlines on a 0–100 scale.
+MediaLens is a hybrid Natural Language Processing (NLP) system that detects, measures, and explains the manipulative intensity of news and media headlines on a 0–100 scale.
 
-The system combines a **TF-IDF + Logistic Regression** machine learning model with a **rule-based linguistic analysis engine** to provide both a manipulation prediction and an interpretable explanation of the linguistic cues contributing to the result.
+The system combines a TF-IDF + Logistic Regression machine learning model with a rule-based linguistic analysis engine to provide both a manipulation prediction and an interpretable explanation of the linguistic cues contributing to the result.
 
-> **MediaLens does not determine whether a headline is true or false. It helps users understand how the headline is designed to capture attention.**
+MediaLens does not determine whether a headline is true or false. It helps users understand how the headline is designed to capture attention.
 
----
-
-## 🎯 Problem Statement
+🎯 Problem Statement
 
 Digital users consume large numbers of headlines every day, making it difficult to distinguish straightforward information from headlines designed primarily to maximize engagement.
 
 Common techniques include:
 
-* Sensational or emotionally charged vocabulary
-* Curiosity gaps and withheld information
-* Excessive capitalization
-* Repeated punctuation
-* Listicle-style framing
-* Urgency and imperative language
+Sensational or emotionally charged vocabulary
+
+Curiosity gaps and withheld information
+
+Excessive capitalization
+
+Repeated punctuation
+
+Listicle-style framing
+
+Urgency and imperative language
 
 Traditional machine learning models can learn statistical patterns from historical datasets, but may struggle with newer or previously unseen forms of engagement bait. Purely rule-based systems, on the other hand, can be rigid and unable to capture broader language patterns.
 
-**MediaLens addresses both limitations using a hybrid ML + linguistic-rule architecture.**
+MediaLens addresses both limitations using a hybrid ML + linguistic-rule architecture.
 
----
-
-## 💡 Solution
+💡 Solution
 
 MediaLens analyzes a headline through two complementary engines:
 
-### 1. Statistical ML Engine — 70%
+1. Statistical ML Engine — 70%
 
-The machine learning pipeline captures statistical vocabulary and phrase patterns using:
+Text preprocessing and normalization
 
-* Text preprocessing and normalization
-* TF-IDF vectorization
-* Unigrams and bigrams
-* Logistic Regression
-* Probability-based classification
+TF-IDF vectorization
 
-### 2. Linguistic Heuristic Engine — 30%
+Unigrams and bigrams
+
+Logistic Regression
+
+Probability-based classification
+
+2. Linguistic Heuristic Engine — 30%
 
 The rule-based engine explicitly searches for engagement-oriented linguistic patterns such as:
 
-* Excessive capitalization
-* Repeated or excessive punctuation
-* Listicle structures
-* Curiosity-gap phrases
-* Sensational vocabulary
-* Urgency and imperative language
-* Emotional or fear-oriented framing
+Excessive capitalization
 
-### 3. Explainable AI Layer
+Repeated or excessive punctuation
+
+Listicle structures
+
+Curiosity-gap phrases
+
+Sensational vocabulary
+
+Urgency and imperative language
+
+Emotional or fear-oriented framing
+
+3. Explainable AI Layer
 
 Instead of returning only a numerical prediction, MediaLens identifies the linguistic signals detected in the headline and presents them in a human-readable format.
 
-For example:
+Example:
 
-> **"10 SHOCKING Things You Won't Believe About Your Favorite Celebrity!!!"**
+"10 SHOCKING Things You Won't Believe About Your Favorite Celebrity!!!"
 
-MediaLens may identify:
+Detected signals may include:
 
-* Listicle framing
-* Sensational vocabulary
-* Curiosity gap
-* Excessive capitalization
-* Excessive punctuation
+Listicle framing
 
-This makes the prediction easier for users to understand and evaluate.
+Sensational vocabulary
 
----
+Curiosity gap
 
-## 👥 Target Users
+Excessive capitalization
 
-### Primary Users — Everyday Digital-News Consumers
+Excessive punctuation
 
-MediaLens is primarily designed for people who regularly encounter headlines across:
+👥 Target Users
 
-* News websites
-* Search engines
-* Social media
-* Content recommendation feeds
+Primary Users — Everyday Digital-News Consumers
 
-The goal is not to tell users **what to believe**, but to increase awareness of the linguistic techniques being used to capture their attention.
+People who regularly encounter headlines across:
 
-### Potential Future Users
+News websites
 
-* Journalists and editors
-* Media-literacy organizations
-* Researchers studying online media
-* Content creators
-* News and browser-platform developers
+Search engines
 
----
+Social media
 
-## ✨ Key Features
+Content recommendation feeds
 
-| Feature                        | Description                                                                   |
-| ------------------------------ | ----------------------------------------------------------------------------- |
-| 🤖 **ML Classification**       | TF-IDF + Logistic Regression for statistical headline classification          |
-| 🔀 **Hybrid Scoring**          | Combines ML prediction and linguistic heuristics using a 70/30 weighting      |
-| 🔍 **Explainable AI**          | Shows the linguistic signals contributing to the result                       |
-| 📊 **0–100 Intensity Score**   | Converts the combined prediction into an interpretable manipulation intensity |
-| 📁 **Batch Analysis**          | Analyze multiple headlines using CSV or Excel files                           |
-| 📈 **Performance Dashboard**   | View model metrics and confusion matrices                                     |
-| 🧠 **Architecture Visualizer** | Understand the complete NLP processing pipeline                               |
-| ✍️ **Neutral Rewrite**         | Provides a less engagement-oriented alternative headline                      |
+The goal is not to tell users what to believe, but to increase awareness of the linguistic techniques being used to capture their attention.
 
----
+Potential Future Users
 
-## 🧠 System Architecture
+Journalists and editors
 
-```text
+Media-literacy organizations
+
+Researchers studying online media
+
+Content creators
+
+News and browser-platform developers
+
+✨ Key Features
+
+Feature
+
+Description
+
+🤖 ML Classification
+
+TF-IDF + Logistic Regression for statistical headline classification
+
+🔀 Hybrid Scoring
+
+Combines ML prediction and linguistic heuristics using a 70/30 weighting
+
+🔍 Explainable AI
+
+Shows the linguistic signals contributing to the result
+
+📊 0–100 Intensity Score
+
+Converts the combined prediction into an interpretable manipulation intensity
+
+📁 Batch Analysis
+
+Analyze multiple headlines using CSV or Excel files
+
+📈 Performance Dashboard
+
+View model metrics and confusion matrices
+
+🧠 Architecture Visualizer
+
+Understand the complete NLP processing pipeline
+
+🎣 Clickbait Simulator
+
+Uses an LLM (Qwen 3.6) to inject curiosity gaps into plain headlines
+
+🧠 System Architecture
+
                          User Input
                        (News Headline)
                               │
@@ -160,118 +196,110 @@ The goal is not to tell users **what to believe**, but to increase awareness of 
                      User Interpretation
                               │
                               ▼
-                     Neutral Alternative
-```
+                    Clickbait Simulator
 
----
+📚 Dataset & Provenance
 
-## 📚 Dataset & Provenance
+The ML pipeline is trained using the Clickbait Dataset by Aman Anand Rai from Kaggle.
 
-The ML pipeline is trained using the **Clickbait Dataset by Aman Anand Rai** from Kaggle.
+Dataset characteristics
 
-**Dataset characteristics:**
+Approximately 32,000 headlines
 
-* Approximately **32,000 headlines**
-* Approximately **50% clickbait / 50% non-clickbait**
-* Clickbait sources include BuzzFeed, Upworthy, ViralNova, ThatScoop, BoredPanda, and Huffington Post
-* Non-clickbait sources include The New York Times, The Guardian, The Hindu, and WikiNews
+Approximately 50% clickbait / 50% non-clickbait
 
-### Dataset Limitation
+Clickbait sources include BuzzFeed, Upworthy, ViralNova, ThatScoop, BoredPanda, and Huffington Post
 
-The dataset contains strong publisher/source associations. Consequently, some of the learned patterns may reflect **publisher characteristics rather than purely linguistic characteristics**.
+Non-clickbait sources include The New York Times, The Guardian, The Hindu, and WikiNews
+
+Dataset Limitation
+
+The dataset contains strong publisher/source associations. Consequently, some learned patterns may reflect publisher characteristics rather than purely linguistic characteristics.
 
 MediaLens therefore supplements the statistical model with explicit linguistic heuristics to detect engagement-oriented patterns that may not be adequately represented in the historical training data.
 
----
+🔬 NLP Pipeline & Mathematical Design
 
-## 🔬 NLP Pipeline & Mathematical Design
+1. Text Preprocessing
 
-### 1. Text Preprocessing
+The input headline undergoes preprocessing and normalization before feature extraction.
 
-The input headline undergoes preprocessing and normalization before being passed to the feature extraction stage.
+2. TF-IDF Vectorization
 
-### 2. TF-IDF Vectorization
+MediaLens converts text into numerical feature vectors using Term Frequency–Inverse Document Frequency (TF-IDF).
 
-MediaLens converts text into numerical feature vectors using **Term Frequency–Inverse Document Frequency (TF-IDF)**.
-
-Configuration:
-
-```text
 ngram_range = (1, 2)
 max_features = 5000
-```
-
-#### Unigrams + Bigrams
 
 Using both unigrams and bigrams allows the model to capture individual words as well as short phrases.
 
 Examples:
 
-```text
 "shocking"
 "won't believe"
 "breaking news"
-```
-
-#### Maximum Features
 
 The vocabulary is limited to 5,000 features to reduce dimensionality, computational cost, and the influence of extremely rare terms.
 
-### 3. Logistic Regression
+3. Logistic Regression
 
 The resulting TF-IDF vectors are provided to a Logistic Regression classifier.
 
 The model produces a probability representing its estimated likelihood that the headline belongs to the manipulative/clickbait class.
 
-### 4. Hybrid Scoring
+4. Hybrid Scoring
 
 The final manipulation intensity combines the ML prediction with the rule-engine score:
 
-$$
-\text{Intensity Score}
-=
-\min
-\left(
-(P_{\text{ML}}\times0.70)
-+
-(S_{\text{Rules}}\times0.30),
-1.0
-\right)
-\times100
-$$
+Intensity Score =
+min((P_ML × 0.70) + (S_Rules × 0.30), 1.0) × 100
 
 Where:
 
-* $P_{\text{ML}}$ = ML model probability
-* $S_{\text{Rules}}$ = normalized linguistic rule score
-* 0.70 = ML contribution
-* 0.30 = rule-engine contribution
+P_ML = ML model probability
 
----
+S_Rules = normalized linguistic rule score
 
-## 📊 Manipulation Intensity Categories
+0.70 = ML contribution
 
-|      Score | Category     |
-| ---------: | ------------ |
-|   **0–20** | 🟢 Very Low  |
-|  **21–40** | 🟢 Low       |
-|  **41–60** | 🟡 Moderate  |
-|  **61–80** | 🟠 High      |
-| **81–100** | 🔴 Very High |
+0.30 = rule-engine contribution
 
-The score represents **manipulation intensity**, not the probability that the underlying information is false.
+📊 Manipulation Intensity Categories
 
----
+Score
 
-## 🔎 Example Analysis
+Category
 
-### Input
+0–20
 
-> **"10 SHOCKING Things You Won't Believe About Your Favorite Celebrity!!!"**
+🟢 Very Low
 
-### MediaLens Output
+21–40
 
-```text
+🟢 Low
+
+41–60
+
+🟡 Moderate
+
+61–80
+
+🟠 High
+
+81–100
+
+🔴 Very High
+
+The score represents manipulation intensity, not the probability that the underlying information is false.
+
+🔎 Example Analysis
+
+Input
+
+"10 SHOCKING Things You Won't Believe About Your Favorite Celebrity!!!"
+
+MediaLens Output
+
 Manipulation Intensity: 94 / 100
 Category: Very High
 
@@ -283,111 +311,199 @@ Linguistic Signals:
 ✓ Excessive punctuation
 ✓ Sensational vocabulary
 ✓ Curiosity-gap phrase
-```
 
-### Detected Signals
+Detected Signal
 
-| Signal                  | Evidence                               |
-| ----------------------- | -------------------------------------- |
-| 🔴 Listicle             | Headline begins with a number          |
-| 🔴 Capitalization       | Multiple words use excessive uppercase |
-| 🔴 Punctuation          | Repeated exclamation marks             |
-| 🔴 Sensational language | "SHOCKING"                             |
-| 🔴 Curiosity gap        | "You Won't Believe"                    |
+Evidence
 
----
+🔴 Listicle
 
-## 📈 Model Benchmark
+Headline begins with a number
 
-Models are evaluated using a stratified **80/20 train-test split**.
+🔴 Capitalization
 
-| Model                   | Accuracy |  F1-Score |     Inference | Selection    |
-| ----------------------- | -------: | --------: | ------------: | ------------ |
-| **Logistic Regression** | **~92%** | **~0.91** |     **<5 ms** | **Selected** |
-| Naive Bayes             |     ~89% |     ~0.88 | Extremely Low | Not selected |
-| Random Forest           |     ~90% |     ~0.89 |        ~45 ms | Not selected |
+Multiple words use excessive uppercase
 
-### Why Logistic Regression?
+🔴 Punctuation
+
+Repeated exclamation marks
+
+🔴 Sensational language
+
+"SHOCKING"
+
+🔴 Curiosity gap
+
+"You Won't Believe"
+
+📈 Model Benchmark
+
+Models are evaluated using a stratified 80/20 train-test split.
+
+Model
+
+Accuracy
+
+F1-Score
+
+Inference
+
+Selection
+
+Logistic Regression
+
+~92%
+
+~0.91
+
+<5 ms
+
+Selected
+
+Naive Bayes
+
+~89%
+
+~0.88
+
+Extremely Low
+
+Not selected
+
+Random Forest
+
+~90%
+
+~0.89
+
+~45 ms
+
+Not selected
+
+Why Logistic Regression?
 
 Logistic Regression provides a strong balance between:
 
-* Classification performance
-* Fast inference
-* Model simplicity
-* Probability-based predictions
-* Compatibility with the continuous hybrid scoring system
+Classification performance
 
-> **Note:** Benchmark values should be updated if the final training pipeline produces different measurements.
+Fast inference
 
----
+Model simplicity
 
-## 🖥️ Application Modules
+Probability-based predictions
 
-MediaLens provides multiple components through its Streamlit interface:
+Compatibility with continuous hybrid scoring
 
-### 1. Single Headline Analyzer
+Note: Update benchmark values if the final training pipeline produces different measurements.
+
+🖥️ Application Modules
+
+MediaLens provides multiple components through its Streamlit interface.
+
+1. Single Headline Analyzer
 
 Enter an individual headline and receive:
 
-* Manipulation intensity
-* ML prediction
-* Rule score
-* Detected linguistic signals
-* Explanation
-* Neutral alternative
+Manipulation intensity
 
-### 2. Batch Analyzer
+ML prediction
+
+Rule score
+
+Detected linguistic signals
+
+Explanation
+
+Clickbait alternatives via LLM
+
+2. Batch Analyzer
 
 Upload a CSV or Excel file containing multiple headlines and analyze them simultaneously.
 
 Example:
 
-```text
 headline
 -----------------------------------------
 10 Things You Didn't Know About AI
 Scientists Announce New Climate Findings
 You Won't BELIEVE What Happened Next!!!
-```
 
-### 3. Model Performance Dashboard
+3. Model Performance Dashboard
 
 Provides model evaluation information such as:
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* Confusion matrix
-* Model comparison
+Accuracy
 
-### 4. Architecture Visualizer
+Precision
+
+Recall
+
+F1-score
+
+Confusion matrix
+
+Model comparison
+
+4. Architecture Visualizer
 
 Provides a visual explanation of the MediaLens NLP and hybrid-scoring pipeline.
 
----
+🛠️ Technology Stack
 
-## 🛠️ Technology Stack
+Component
 
-| Component            | Technology                           |
-| -------------------- | ------------------------------------ |
-| Programming Language | Python                               |
-| NLP                  | Scikit-learn                         |
-| Feature Extraction   | TF-IDF                               |
-| ML Model             | Logistic Regression                  |
-| Rule Engine          | Python linguistic heuristics / regex |
-| XAI                  | Rule-based evidence explanations     |
-| Interface            | Streamlit                            |
-| Data Processing      | Pandas                               |
-| Visualization        | Matplotlib / Streamlit               |
-| Model Serialization  | Pickle                               |
-| Dataset              | Kaggle Clickbait Dataset             |
+Technology
 
----
+Programming Language
 
-## 📂 Project Structure
+Python
 
-```text
+NLP
+
+Scikit-learn
+
+Feature Extraction
+
+TF-IDF
+
+ML Model
+
+Logistic Regression
+
+Rule Engine
+
+Python linguistic heuristics / regex
+
+XAI
+
+Rule-based evidence explanations
+
+Interface
+
+Streamlit
+
+Data Processing
+
+Pandas
+
+Visualization
+
+Matplotlib / Streamlit
+
+Model Serialization
+
+Pickle
+
+Dataset
+
+Kaggle Clickbait Dataset
+
+LLM Simulator
+
+Groq API + Qwen 3.6
+
+📂 Project Structure
+
 MediaLens/
 │
 ├── data/
@@ -402,180 +518,164 @@ MediaLens/
 ├── metrics.json
 │
 ├── requirements.txt
+├── .gitignore
 └── README.md
-```
 
----
+⚙️ Installation & Setup
 
-## ⚙️ Installation & Setup
+Prerequisites
 
-### Prerequisites
+Python 3.9+
 
-* Python 3.9+
-* `pip`
-* `venv`
-* Git
+pip
 
-### 1. Clone the Repository
+venv
 
-```bash
-git clone https://github.com/<your-username>/medialens.git
-cd medialens
-```
+Git
 
-### 2. Create a Virtual Environment
+1. Clone the Repository
 
-```bash
+git clone https://github.com/Suruchidoke/Clickbait_intensity-analyser.git
+cd Clickbait_intensity-analyser
+
+2. Create a Virtual Environment
+
 python -m venv venv
-```
 
-### 3. Activate the Environment
+3. Activate the Environment
 
-**Windows:**
+Windows:
 
-```bash
 venv\Scripts\activate
-```
 
-**macOS/Linux:**
+macOS/Linux:
 
-```bash
 source venv/bin/activate
-```
 
-### 4. Install Dependencies
+4. Install Dependencies
 
-```bash
 pip install -r requirements.txt
-```
 
-### 5. Run the Application
+5. Configure Environment Variables
 
-```bash
+Create a .env file in the project root and add your Groq API key:
+
+GROQ_API_KEY=your_api_key_here
+
+Never commit .env or API keys to GitHub.
+
+6. Run the Application
+
 streamlit run app.py
-```
 
 The application will open in your browser.
 
-### Retraining the Model
+Retraining the Model
 
 To regenerate the trained model and evaluation metrics:
 
-```bash
 python 01_baseline.py
-```
 
----
+⚠️ Limitations
 
-## ⚠️ Limitations
+1. Factual Verification
 
-### 1. Factual Verification
-
-MediaLens analyzes **linguistic manipulation**, not factual accuracy.
+MediaLens analyzes linguistic manipulation, not factual accuracy.
 
 A headline can be:
 
-* Manipulative but factually correct
-* Non-manipulative but factually incorrect
+Manipulative but factually correct
 
-Therefore, MediaLens should **not** be treated as a fake-news detector.
+Non-manipulative but factually incorrect
 
-### 2. Dataset Bias
+Therefore, MediaLens should not be treated as a fake-news detector.
+
+2. Dataset Bias
 
 The training dataset contains publisher/source associations, which may introduce domain and publication-style bias.
 
-### 3. English Language Focus
+3. English Language Focus
 
 The current NLP pipeline and heuristic rules are primarily designed for English.
 
-Support for languages such as:
+Support for Hindi, Marathi, and other Indian languages would require multilingual datasets, language-specific preprocessing, and additional linguistic rules.
 
-* Hindi
-* Marathi
-* Other Indian languages
+4. Context Limitation
 
-would require multilingual datasets, language-specific preprocessing, and additional linguistic rules.
+The system evaluates the headline itself and does not currently analyze the complete article, publisher reputation, or external evidence.
 
-### 4. Context Limitation
+🚀 Future Scope
 
-The system evaluates the **headline itself** and does not currently analyze the complete article, publisher reputation, or external evidence.
+🌐 Browser Extension
 
----
+Automatically analyze headlines encountered on news websites and display the manipulation intensity beside them.
 
-## 🚀 Future Scope
-
-### 🌐 Browser Extension
-
-Develop a browser extension that automatically analyzes headlines encountered on news websites and displays the manipulation intensity directly beside them.
-
-### 🌍 Multilingual Analysis
+🌍 Multilingual Analysis
 
 Extend the system to Hindi, Marathi, and other regional languages.
 
-### 📰 Article-Level Analysis
+📰 Article-Level Analysis
 
 Analyze headlines together with article content to provide a richer linguistic assessment.
 
-### 🔍 Factual Verification
+🔍 Factual Verification
 
 Integrate a separate fact-verification pipeline to distinguish:
 
-```text
 Manipulation Analysis
         +
 Factual Verification
         ↓
 Comprehensive Media Analysis
-```
 
-This would keep **linguistic manipulation** and **factual accuracy** as separate, measurable dimensions.
+This keeps linguistic manipulation and factual accuracy as separate, measurable dimensions.
 
-### 📊 Media Trend Analytics
+📊 Media Trend Analytics
 
 Analyze large collections of headlines to identify:
 
-* Manipulation trends over time
-* Common manipulation techniques
-* Publisher-level patterns
-* Topic-specific engagement strategies
+Manipulation trends over time
 
----
+Common manipulation techniques
 
-## 🔐 Responsible AI Considerations
+Publisher-level patterns
 
-MediaLens is intended as an **awareness and media-literacy tool**, not an authority that determines whether a publisher or article is trustworthy.
+Topic-specific engagement strategies
+
+🔐 Responsible AI Considerations
+
+MediaLens is intended as an awareness and media-literacy tool, not an authority that determines whether a publisher or article is trustworthy.
 
 The system should therefore:
 
-* Explain predictions rather than simply labeling content
-* Clearly communicate uncertainty
-* Avoid equating manipulation with misinformation
-* Avoid making claims about publisher intent
-* Keep factual verification separate from linguistic analysis
+Explain predictions rather than simply labeling content
 
----
+Clearly communicate uncertainty
 
-## 🎯 Project Goal
+Avoid equating manipulation with misinformation
+
+Avoid making claims about publisher intent
+
+Keep factual verification separate from linguistic analysis
+
+🎯 Project Goal
 
 MediaLens aims to move beyond simply asking:
 
-> **"Is this headline clickbait?"**
+"Is this headline clickbait?"
 
 and instead ask:
 
-> **"What linguistic techniques are being used to capture my attention?"**
+"What linguistic techniques are being used to capture my attention?"
 
-By combining **machine learning, linguistic rules, and explainable analysis**, MediaLens provides users with a more transparent way to understand the headlines they encounter every day.
+By combining machine learning, linguistic rules, and explainable analysis, MediaLens provides users with a more transparent way to understand the headlines they encounter every day.
 
----
+📌 Project Status
 
-## 📌 Project Status
+Current Stage: Final-Year Academic Project
 
-**Current Stage:** Final-Year Academic Project
+Core Pipeline
 
-**Core Pipeline:**
-
-```text
 Headline
    ↓
 Text Preprocessing
@@ -592,13 +692,16 @@ Linguistic Rules ─────────┤
                           ↓
                  XAI Explanation
                           ↓
-                 User Awareness
-```
+                 Clickbait Simulator
 
----
+👩‍💻 Author
 
-## 👩‍💻 Authors
-
-**MediaLens — Headline Manipulation Analyzer**
+MediaLens — Headline Manipulation Analyzer
 
 Developed by Suruchi Doke
+
+🔗 Links
+
+GitHub: https://github.com/Suruchidoke/Clickbait_intensity-analyser
+
+Live Demo: https://clickbaitintensity-analyser-djylowb2q9vrhsunjgmde3.streamlit.app/

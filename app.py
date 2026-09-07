@@ -2,7 +2,13 @@ import streamlit as st
 import pandas as pd
 import joblib
 import json
+import os
 from features import extract_linguistic_features
+from groq import Groq
+from dotenv import load_dotenv
+
+# Load local environment variables
+load_dotenv()
 
 @st.cache_resource
 def load_assets():
@@ -13,6 +19,30 @@ def load_assets():
     return model, vectorizer, metrics
 
 model, vectorizer, metrics = load_assets()
+
+def generate_clickbait_headlines(headline):
+    try:
+        api_key = os.getenv("GROQ_API_KEY")
+        if not api_key:
+            api_key = st.secrets["GROQ_API_KEY"]
+            
+        client = Groq(api_key=api_key)
+        
+        prompt = f"Rewrite this plain headline into 3 highly engaging, curiosity-driven clickbait alternatives. You must use emotional hooks, dramatic phrasing, and a 'curiosity gap' (withholding the payoff). Output ONLY the 3 bullet points.\n\nHeadline: {headline}"
+        
+        completion = client.chat.completions.create(
+            model="qwen/qwen3.6-27b",
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.5,
+            max_tokens=250,
+            # This completely disables the <think> block
+            extra_body={"reasoning_effort": "none"} 
+        )
+        return completion.choices[0].message.content
+    except Exception as e:
+        return f"LLM Generation Failed: ({str(e)})"
 
 st.title("MediaLens: Headline Manipulation Analyzer")
 
@@ -51,7 +81,15 @@ with tab1:
                 
                 st.markdown(f"🟢 **ML Model:** {round(ml_prob*100)}% confident based on historical vocabulary patterns.")
 
-# TAB 2: Batch Processing (Now with Excel & CSV)
+            # Groq LLM Integration for Clickbait Simulator
+            st.markdown("---")
+            st.markdown("### 🎣 AI-Generated Clickbait Simulator")
+            st.info("Using Groq (Qwen 3.6) to inject a curiosity gap and emotional triggers.")
+            with st.spinner("Generating clickbait..."):
+                alternatives = generate_clickbait_headlines(headline)
+                st.write(alternatives)
+
+# TAB 2: Batch Processing
 with tab2:
     st.header("Batch CSV/Excel Manipulation Analysis")
     st.write("Upload a file (`.csv`, `.xlsx`, `.xls`) containing a column named `headline`.")
