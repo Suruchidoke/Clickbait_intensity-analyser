@@ -31,7 +31,7 @@ def generate_clickbait_headlines(headline):
         prompt = f"Rewrite this plain headline into 3 highly engaging, curiosity-driven clickbait alternatives. You must use emotional hooks, dramatic phrasing, and a 'curiosity gap' (withholding the payoff). Output ONLY the 3 bullet points.\n\nHeadline: {headline}"
         
         completion = client.chat.completions.create(
-            model="mixtral-8x7b-32768",
+            model="llama-3.3-70b-versatile",
             messages=[
                 {"role": "user", "content": prompt}
             ],
